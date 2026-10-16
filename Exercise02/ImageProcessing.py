@@ -1,7 +1,7 @@
 import cv2
 from IPython.display import display, Markdown
 
-def ReadAndDisplayImage(path, title, reasonableResize):
+def LoadImage(path):
     image = cv2.imread(path)
     
     if image is None:
@@ -10,12 +10,7 @@ def ReadAndDisplayImage(path, title, reasonableResize):
     
     width, height, channels = image.shape
     type = image.dtype
-    #cv2.cvtColor()
-    
-    if reasonableResize:
-        image = cv2.resize(image, (int(width / 4), int(height / 4)))
 
-    cv2.imshow(title, image)
     sizeString = "## Size: w =" + str(width) + " h =" + str(height)
     channelsString = "## Channels: " + str(channels)
     formatString = "## Format: " + str(type)
@@ -23,9 +18,6 @@ def ReadAndDisplayImage(path, title, reasonableResize):
     display(Markdown(sizeString))
     display(Markdown(channelsString))
     display(Markdown(formatString))
-    
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
     
     return image
     
